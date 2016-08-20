@@ -155,18 +155,18 @@ class MPQueryAdmin
         $wsdl_url_key = 'wsdl_url';
         $domain_guid_key = 'domain_guid';
         $server_name_key = 'server_name';
-        $change_api_password_key = 'change_api_password';
-        $api_password_key = 'api_password';
-        $previous_api_password_key = 'previous_api_password';
+        $change_api_creds_key = 'change_api_password';
+        $api_creds_key = 'api_password';
+        $previous_api_creds_key = 'previous_api_password';
         $valid = array();
 
         $valid[$server_name_key] = sanitize_text_field($input[$server_name_key]);
         $valid[$wsdl_url_key] = esc_url($input[$wsdl_url_key]);
         $valid[$domain_guid_key] = sanitize_text_field($input[$domain_guid_key]);
-        if (isset($input[$change_api_password_key]) && !empty($input[$change_api_password_key])) {
-            $valid[$api_password_key] = sanitize_text_field($input[$api_password_key]);
+        if (isset($input[$change_api_creds_key]) && !empty($input[$change_api_creds_key])) {
+            $valid[$api_creds_key] = sanitize_text_field($input[$api_creds_key]);
         } else {
-            $valid[$api_password_key] = sanitize_text_field($input[$previous_api_password_key]);
+            $valid[$api_creds_key] = sanitize_text_field($input[$previous_api_creds_key]);
         }
 
         return $valid;
