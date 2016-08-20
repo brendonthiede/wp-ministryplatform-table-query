@@ -125,6 +125,8 @@ class MPQueryAdmin
      * Add settings action link to the plugins page.
      *
      * @since    1.0.0
+     * @param    string $links The existing links for the plugin (Activate, Edit, etc.)
+     * @return   array
      */
 
     public function add_action_links($links)
@@ -146,6 +148,33 @@ class MPQueryAdmin
     public function display_plugin_setup_page()
     {
         include_once('partials/mp-query-admin-display.php');
+    }
+
+    public function validate($input)
+    {
+        $wsdl_url_key = 'wsdl_url';
+        $domain_guid_key = 'domain_guid';
+        $server_name_key = 'server_name';
+        $change_api_password_key = 'change_api_password';
+        $api_password_key = 'api_password';
+        $previous_api_password_key = 'previous_api_password';
+        $valid = array();
+
+        $valid[$server_name_key] = sanitize_text_field($input[$server_name_key]);
+        $valid[$wsdl_url_key] = esc_url($input[$wsdl_url_key]);
+        $valid[$domain_guid_key] = sanitize_text_field($input[$domain_guid_key]);
+        if (isset($input[$change_api_password_key]) && !empty($input[$change_api_password_key])) {
+            $valid[$api_password_key] = sanitize_text_field($input[$api_password_key]);
+        } else {
+            $valid[$api_password_key] = sanitize_text_field($input[$previous_api_password_key]);
+        }
+
+        return $valid;
+    }
+
+    public function options_update()
+    {
+        register_setting($this->plugin_name, $this->plugin_name, array($this, 'validate'));
     }
 
 }

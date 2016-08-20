@@ -8,8 +8,12 @@
     clear: both;
 }
 
-.wrap input {
+.wrap input.regular-text {
     width: 100%;
     clear: both;
     margin-bottom: 8px;
+}
+
+#change-api-password {
+    display: none;
 }
