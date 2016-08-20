@@ -90,23 +90,27 @@ class MPQuery
          * The class responsible for orchestrating the actions and filters of the
          * core plugin.
          */
+        /** @noinspection PhpIncludeInspection */
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-mp-query-loader.php';
 
         /**
          * The class responsible for defining internationalization functionality
          * of the plugin.
          */
+        /** @noinspection PhpIncludeInspection */
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-mp-query-i18n.php';
 
         /**
          * The class responsible for defining all actions that occur in the admin area.
          */
+        /** @noinspection PhpIncludeInspection */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-mp-query-admin.php';
 
         /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
          */
+        /** @noinspection PhpIncludeInspection */
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-mp-query-public.php';
 
         $this->loader = new MPQueryLoader();
@@ -152,6 +156,9 @@ class MPQuery
         // Add Settings link to the plugin
         $plugin_basename = plugin_basename(plugin_dir_path(__DIR__) . $this->plugin_name . '.php');
         $this->loader->add_filter('plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links');
+
+        // Save/Update our plugin options
+        $this->loader->add_action('admin_init', $plugin_admin, 'options_update');
 
     }
 

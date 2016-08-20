@@ -36,6 +36,7 @@ if (!defined('WPINC')) {
  */
 function activate_mp_query()
 {
+    /** @noinspection PhpIncludeInspection */
     require_once plugin_dir_path(__FILE__) . 'includes/class-mp-query-activator.php';
     MPQueryActivator::activate();
 }
@@ -46,6 +47,7 @@ function activate_mp_query()
  */
 function deactivate_mp_query()
 {
+    /** @noinspection PhpIncludeInspection */
     require_once plugin_dir_path(__FILE__) . 'includes/class-mp-query-deactivator.php';
     MPQueryDeactivator::deactivate();
 }
@@ -57,6 +59,7 @@ register_deactivation_hook(__FILE__, 'deactivate_mp_query');
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
+/** @noinspection PhpIncludeInspection */
 require plugin_dir_path(__FILE__) . 'includes/class-mp-query.php';
 
 /**
