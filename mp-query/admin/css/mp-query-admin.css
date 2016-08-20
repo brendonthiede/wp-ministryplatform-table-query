@@ -2,3 +2,14 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+.wrap {
+    width: 500px;
+    clear: both;
+}
+
+.wrap input {
+    width: 100%;
+    clear: both;
+    margin-bottom: 8px;
+}
